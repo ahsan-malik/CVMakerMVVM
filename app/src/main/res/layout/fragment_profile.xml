@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="ahsan_malik.cvmakermvvm.views.fragments.ProfileFragment"/>
+        <import type="ahsan_malik.cvmakermvvm.appUtils.Helper" />
+        <import type="ahsan_malik.cvmakermvvm.models.Person"/>
+
+        <variable
+            name="person"
+            type="Person" />
+
+        <variable
+            name="handler"
+            type="ProfileFragment" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapseToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ctr_bg"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="snap|scroll|exitUntilCollapsed"
+                app:title="Profile">
+
+                <ImageView
+                    imageBitmap="@{person.image}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="-70dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/khabib"
+                    app:layout_collapseMode="parallax" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/primaryTransparent"
+                    android:elevation="1dp" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/ProfileScreenTitleText"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/allerta"
+                        android:text="Full name" />
+
+                    <EditText
+                        style="@style/ProfileScreenText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="your name..."
+                        android:text="@={person.firstName}" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@color/grayTransparent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/ProfileScreenTitleText"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/alegreya"
+                        android:text="father name" />
+
+                    <EditText
+                        style="@style/ProfileScreenText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="father name..."
+                        android:text="@={person.fatherName}" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@color/grayTransparent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/ProfileScreenTitleText"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/alegreya"
+                        android:text="birthday" />
+
+                    <TextView
+                        style="@style/ProfileScreenText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="date of birth..."
+                        android:onClick="@{() -> handler.pickDate()}"
+                        android:text="@{Helper.getDateFormatted(person.dateOfBirth), default=`22/02/1997`}" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.0dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grayTransparent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/ProfileScreenTitleText"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/alegreya"
+                        android:text="gender" />
+
+                    <TextView
+                        style="@style/ProfileScreenText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:visibility="gone" />
+
+                    <org.angmarch.views.NiceSpinner
+                        selectedValue="@={person.gender}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:entries="@array/gender_array"
+                        app:textTint="@color/black" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@color/grayTransparent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/ProfileScreenTitleText"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="phone" />
+
+                    <EditText
+                        style="@style/ProfileScreenText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="phone..."
+                        android:inputType="phone"
+                        android:text="@={person.phone, default=`03214347720`}" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.0dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grayTransparent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/ProfileScreenTitleText"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/alegreya"
+                        android:text="email" />
+
+                    <EditText
+                        style="@style/ProfileScreenText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="email..."
+                        android:inputType="textEmailAddress"
+                        android:text="@={person.email, default=`mailkahsa2001@gmail.com`}" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@color/grayTransparent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/ProfileScreenTitleText"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/alegreya"
+                        android:text="Location"
+                        android:onClick="@{() -> handler.pdf()}"/>
+
+                    <EditText
+                        style="@style/ProfileScreenText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="address..."
+                        android:text="@={person.location, default=`Khokhar Town, House #3, Sheikhupura`}" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@color/grayTransparent" />
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_img"
+            imageBitmap="@{person.image}"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginRight="30dp"
+            android:baselineAlignBottom="false"
+            android:clickable="true"
+            android:elevation="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/khabib"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|end" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
+
+
+
+
+

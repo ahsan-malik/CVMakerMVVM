@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CVMakerMVVM</string>
+    <string name="experience">Experience</string>
+    <string name="organization">Organization</string>
+    <string name="designation">Designation</string>
+    <string name="cancel">cancel</string>
+    <string name="ok">OK</string>
+    <string name="duration">Duration</string>
+    <string name="todo">TODO</string>
+    <string name="title">Title</string>
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+</resources>
